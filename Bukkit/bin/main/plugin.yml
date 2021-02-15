@@ -1,0 +1,13 @@
+name: ServerUtils
+main: net.frankheijden.serverutils.bukkit.ServerUtils
+version: ${version}
+author: FrankHeijden
+api-version: '1.13'
+softdepend: [ServerUtilsUpdater]
+
+commands:
+  serverutils:
+    usage: "/<command>"
+    aliases:
+      - "su"
+

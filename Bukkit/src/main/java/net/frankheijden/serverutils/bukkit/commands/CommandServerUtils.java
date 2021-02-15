@@ -71,7 +71,7 @@ public class CommandServerUtils extends BaseCommand {
     @Default
     @Subcommand("help")
     @CommandPermission("serverutils.help")
-    @Description("Shows a help page with a few commands.")
+    @Description("Afficher la page d'aide de JLS Plugin même effet que la commande /su.")
     public void onHelp(CommandSender commandSender) {
         ServerCommandSender sender = BukkitUtils.wrap(commandSender);
         Messenger.sendMessage(sender, "serverutils.help.header");
@@ -103,7 +103,7 @@ public class CommandServerUtils extends BaseCommand {
      */
     @Subcommand("reload|r")
     @CommandPermission("serverutils.reload")
-    @Description("Reloads the ServerUtils plugin.")
+    @Description("Recharger les configuration de JLS Plugin.")
     public void onReload(CommandSender sender) {
         plugin.reload();
         sendMessage(BukkitUtils.wrap(sender), "serverutils.success",
@@ -119,7 +119,7 @@ public class CommandServerUtils extends BaseCommand {
     @Subcommand("reloadconfig|rc")
     @CommandCompletion("@supportedConfigs")
     @CommandPermission("serverutils.reloadconfig")
-    @Description("Reloads individual Server configurations.")
+    @Description("Recharger les configuration d'un plugin.")
     public void onReloadCommands(CommandSender commandSender, String config) {
         ReloadHandler handler = supportedConfigs.get(config);
         if (handler == null) {
@@ -154,7 +154,7 @@ public class CommandServerUtils extends BaseCommand {
     @Subcommand("loadplugin|lp")
     @CommandCompletion("@pluginJars")
     @CommandPermission("serverutils.loadplugin")
-    @Description("Loads the specified jar file as a plugin.")
+    @Description("Charger le fichier .jar spécifié comme un plugin.")
     public void onLoadPlugin(CommandSender commandSender, String jarFile) {
         ServerCommandSender sender = BukkitUtils.wrap(commandSender);
 
@@ -176,7 +176,7 @@ public class CommandServerUtils extends BaseCommand {
     @Subcommand("unloadplugin|up")
     @CommandCompletion("@plugins")
     @CommandPermission("serverutils.unloadplugin")
-    @Description("Disables and unloads the specified plugin.")
+    @Description("Désactivé et décharger le plugin spécifié.")
     public void onUnloadPlugin(CommandSender commandSender, String pluginName) {
         ServerCommandSender sender = BukkitUtils.wrap(commandSender);
 
@@ -199,7 +199,7 @@ public class CommandServerUtils extends BaseCommand {
     @Subcommand("reloadplugin|rp")
     @CommandCompletion("@plugins")
     @CommandPermission("serverutils.reloadplugin")
-    @Description("Reloads a specified plugin.")
+    @Description("Recharger le plugin spécifié.")
     public void onReloadPlugin(CommandSender sender, String pluginName) {
         // Wacky method to have the resources needed for the reload in memory, in case of a self reload.
         HexUtils utils = new HexUtils();
@@ -221,7 +221,7 @@ public class CommandServerUtils extends BaseCommand {
     @Subcommand("enableplugin|ep")
     @CommandCompletion("@plugins")
     @CommandPermission("serverutils.enableplugin")
-    @Description("Enables the loaded plugin.")
+    @Description("Activer le plugin chargé.")
     public void onEnablePlugin(CommandSender sender, String pluginName) {
         Result result = BukkitPluginManager.get().enablePlugin(pluginName);
         result.sendTo(BukkitUtils.wrap(sender), "enabl", pluginName);
@@ -235,7 +235,7 @@ public class CommandServerUtils extends BaseCommand {
     @Subcommand("disableplugin|dp")
     @CommandCompletion("@plugins")
     @CommandPermission("serverutils.disableplugin")
-    @Description("Disables the specified plugin.")
+    @Description("Désactiver le plugin spécifié dans la commandes.")
     public void onDisablePlugin(CommandSender sender, String pluginName) {
         Result result = BukkitPluginManager.get().disablePlugin(pluginName);
         result.sendTo(BukkitUtils.wrap(sender), "disabl", pluginName);
@@ -249,7 +249,7 @@ public class CommandServerUtils extends BaseCommand {
     @Subcommand("watchplugin|wp")
     @CommandCompletion("@plugins")
     @CommandPermission("serverutils.watchplugin")
-    @Description("Watches the specified plugin for changes.")
+    @Description("Surveiller les changements pour les plugins spécifiés.")
     public void onWatchPlugin(CommandSender sender, String pluginName) {
         ServerCommandSender commandSender = BukkitUtils.wrap(sender);
         AbstractResult result = BukkitPluginManager.get().watchPlugin(commandSender, pluginName);
@@ -264,7 +264,7 @@ public class CommandServerUtils extends BaseCommand {
     @Subcommand("unwatchplugin|uwp")
     @CommandCompletion("@plugins")
     @CommandPermission("serverutils.watchplugin")
-    @Description("Stops watching the specified plugin for changes.")
+    @Description("Arrêter la surveillance des changement pour les plugin spécifié.")
     public void onUnwatchPlugin(CommandSender sender, String pluginName) {
         AbstractResult result = BukkitPluginManager.get().unwatchPlugin(pluginName);
         result.sendTo(BukkitUtils.wrap(sender), "unwatch", pluginName);
@@ -278,7 +278,7 @@ public class CommandServerUtils extends BaseCommand {
     @Subcommand("plugininfo|pi")
     @CommandCompletion("@plugins")
     @CommandPermission("serverutils.plugininfo")
-    @Description("Shows information about the specified plugin.")
+    @Description("Afficher les informations du plugin demandé.")
     public void onPluginInfo(CommandSender commandSender, String pluginName) {
         ServerCommandSender sender = BukkitUtils.wrap(commandSender);
 
@@ -349,7 +349,7 @@ public class CommandServerUtils extends BaseCommand {
     @Subcommand("commandinfo|ci")
     @CommandCompletion("@commands")
     @CommandPermission("serverutils.commandinfo")
-    @Description("Shows information about the specified command.")
+    @Description("Afficher les informations de la commande demandée.")
     public void onCommandInfo(CommandSender commandSender, String command) {
         ServerCommandSender sender = BukkitUtils.wrap(commandSender);
 
